@@ -2,7 +2,8 @@
 Com as definições abaixo, o projeto ficará fixado na tela assim que inicializado, previnindo scrooling (por conta do overflow e do block).
 */
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -11,5 +12,12 @@ html, body {
 }
 
 canvas {
-  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background-image: url("/assets/swamp_.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
