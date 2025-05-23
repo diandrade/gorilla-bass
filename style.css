@@ -11,6 +11,10 @@ body {
   width: 100%;
 }
 
+#game-container {
+  display: none;
+}
+
 canvas {
   position: absolute;
   top: 0;
