@@ -1,9 +1,13 @@
-//load images
-let gorillaImage = new Image();
-gorillaImage.src = './assets/gorilla.png';
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
 
-let humanImage = new Image();
-humanImage.src = './assets/human.png';
+canvas.style.background = "#ff8";
 
-let arenaImage = new Image();
-arenaImage.src = './assets/arena.png';
+//Função responsável por adaptar o canvas do JS dentro do espaço da tela, de maneira responsiva.
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();

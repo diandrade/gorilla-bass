@@ -1,0 +1,15 @@
+/*
+Com as definições abaixo, o projeto ficará fixado na tela assim que inicializado, previnindo scrooling (por conta do overflow e do block).
+*/
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+canvas {
+  display: block;
+}
