@@ -21,9 +21,34 @@ function drawScene() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(gorillaImage, gorilla.x, gorilla.y, gorilla.width, gorilla.height);
 
+    const barWidth = gorilla.width;
+    const barHeight = 8;
+    const hpPercentage = gorilla.hp / gorilla.maxHP;
+
+    ctx.fillStyle = 'red';
+    ctx.fillRect(gorilla.x, gorilla.y - 15, barWidth, barHeight);
+
+    ctx.fillStyle = 'limegreen';
+    ctx.fillRect(gorilla.x, gorilla.y - 15, barWidth * hpPercentage, barHeight);
+
+    ctx.strokeStyle = 'black';
+    ctx.strokeRect(gorilla.x, gorilla.y - 15, barWidth, barHeight);
+
     humans.forEach(human => {
         if (human.alive) {
             ctx.drawImage(humansImage, human.x, human.y, human.width, human.height);
+            const barWidth = human.width;
+            const barHeight = 5;
+            const hpPercentage = human.hp / human.maxHP;
+
+            ctx.fillStyle = 'red';
+            ctx.fillRect(human.x, human.y - 10, barWidth, barHeight);
+
+            ctx.fillStyle = 'limegreen';
+            ctx.fillRect(human.x, human.y - 10, barWidth * hpPercentage, barHeight);
+
+            ctx.strokeStyle = 'black';
+            ctx.strokeRect(human.x, human.y - 10, barWidth, barHeight);
         }
     });
 }
@@ -112,6 +137,8 @@ for (let i = 0; i < 100; i++) {
 gorillaImage.onload = function () {
     drawScene();
 };
+
+
 
 window.addEventListener('resize', () => {
     resizeCanvas();
