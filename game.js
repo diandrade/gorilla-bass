@@ -51,6 +51,15 @@ function drawScene() {
             ctx.strokeRect(human.x, human.y - 10, barWidth, barHeight);
         }
     });
+    ctx.font = '20px Arial';
+    ctx.fillStyle = 'white';
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 2;
+    const scoreText = `Humans killed: ${killedHumans}`;
+    const textWidth = ctx.measureText(scoreText).width;
+    ctx.strokeText(scoreText, canvas.width - textWidth - 20, 30);
+    ctx.fillText(scoreText, canvas.width - textWidth - 20, 30);
+
 }
 
 function curarGorila() {
@@ -70,6 +79,8 @@ function ataqueGorila() {
             human.hp -= 1;
             if (human.hp <= 0) {
                 human.alive = false;
+                killedHumans++;
+                localStorage.setItem('killedHumans', killedHumans);
             }
         }
     });
@@ -131,6 +142,8 @@ for (let i = 0; i < 100; i++) {
         alive: true
     });
 }
+
+let killedHumans = Number(localStorage.getItem('killedHumans')) || 0;
 
 /*------------------------------Chamada das Funções e Eventos----------------------------------------*/
 
