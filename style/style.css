@@ -36,9 +36,9 @@ body {
   color: #e0e0e0;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
   margin: 0.5rem 0;
-  width: 350px;        /* squish content */
-  max-width: 600px;    /* allow some flexibility */
-  text-align: center;  /* center text inside the squished box */
+  width: 350px;
+  max-width: 600px;
+  text-align: center; 
 }
 .icon {
   width: 50px;
