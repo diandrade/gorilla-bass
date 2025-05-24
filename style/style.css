@@ -32,10 +32,6 @@ body {
 }
 
 #start-screen p {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   font-family: 'Press Start 2P', monospace; 
   font-size: 1rem;
   color: #e0e0e0;
@@ -43,6 +39,29 @@ body {
   margin: 0.5rem 0;
   width: 350px;
   max-width: 600px;
+}
+
+.icon {
+  width: 50px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+.controls {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+.controls p {
+  margin: 0.3rem 0;
+}
+
+.icon {
+  width: 50px;
+  
 }
 
 .controls {
