@@ -59,7 +59,21 @@ function drawScene() {
     const textWidth = ctx.measureText(scoreText).width;
     ctx.strokeText(scoreText, canvas.width - textWidth - 20, 30);
     ctx.fillText(scoreText, canvas.width - textWidth - 20, 30);
+}
 
+function atualizarHUD() {
+    document.getElementById('vida-gorila').textContent = gorilla.hp;
+    document.getElementById('mortos').textContent = killedHumans;
+    const vivos = humans.filter(h => h.alive).length;
+    document.getElementById('vivos').textContent = vivos;
+}
+
+function adicionarLog(mensagem) {
+    const log = document.getElementById('log');
+    const novaLinha = document.createElement('p');
+    novaLinha.textContent = mensagem;
+    log.appendChild(novaLinha);
+    log.scrollTop = log.scrollHeight;
 }
 
 function curarGorila() {
@@ -67,6 +81,7 @@ function curarGorila() {
     if (gorilla.hp > gorilla.maxHP) {
         gorilla.hp = gorilla.maxHP;
     }
+    adicionarLog(`Gorila se curou. HP: ${gorilla.hp}`);
 }
 
 function ataqueGorila() {
@@ -81,6 +96,7 @@ function ataqueGorila() {
                 human.alive = false;
                 killedHumans++;
                 localStorage.setItem('killedHumans', killedHumans);
+                adicionarLog(`Humano ${human.id} foi eliminado!`);
             }
         }
     });
@@ -88,9 +104,10 @@ function ataqueGorila() {
 
 function tornarInvulneravel() {
     gorilla.invulneravel = true;
+    adicionarLog("Gorila está invulnerável por 3 segundos!");
     setTimeout(() => {
         gorilla.invulneravel = false;
-    }, 3000); // 3 segundos invulnerável
+    }, 3000);
 }
 
 function humansAttack() {
@@ -120,7 +137,7 @@ resizeCanvas();
 let gorilla = {
     hp: 100,
     maxHP: 100,
-    x: canvas.width * 0.25, // left quarter of the screen
+    x: canvas.width * 0.25,
     y: canvas.height * 0.5,
     width: 80,
     height: 80,
@@ -133,8 +150,8 @@ let humans = [];
 for (let i = 0; i < 100; i++) {
     humans.push({
         id: i,
-        x: canvas.width * 0.5 + Math.random() * (canvas.width * 0.5 - 40), // direita
-        y: canvas.height * 0.5 + Math.random() * (canvas.height * 0.5 - 40), // inferior
+        x: canvas.width * 0.5 + Math.random() * (canvas.width * 0.5 - 40),
+        y: canvas.height * 0.5 + Math.random() * (canvas.height * 0.5 - 40),
         width: 40,
         height: 40,
         hp: 1,
@@ -149,13 +166,13 @@ let killedHumans = Number(localStorage.getItem('killedHumans')) || 0;
 
 gorillaImage.onload = function () {
     drawScene();
+    atualizarHUD();
 };
-
-
 
 window.addEventListener('resize', () => {
     resizeCanvas();
     drawScene();
+    atualizarHUD();
 });
 
 startButton.addEventListener('click', () => {
@@ -163,15 +180,15 @@ startButton.addEventListener('click', () => {
     gameContainer.style.display = 'block';
     resizeCanvas();
     drawScene();
+    atualizarHUD();
 
-    // Inicia ataque automático dos humanos
     setInterval(() => {
         humansAttack();
         drawScene();
+        atualizarHUD();
     }, 1000);
 });
 
-//Eventos de Mouse
 canvas.addEventListener('mousedown', (event) => {
     if (event.button === 0) {
         tornarInvulneravel();
@@ -179,35 +196,29 @@ canvas.addEventListener('mousedown', (event) => {
         ataqueGorila();
     }
     drawScene();
+    atualizarHUD();
 });
+
 canvas.addEventListener('contextmenu', (event) => event.preventDefault());
 
-//Eventos de Teclado
 document.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'w':
-            if (gorilla.y - 10 >= 0) {
-                gorilla.y -= 10;
-            }
+            if (gorilla.y - 10 >= 0) gorilla.y -= 10;
             break;
         case 's':
-            if (gorilla.y + 10 + gorilla.height <= canvas.height) {
-                gorilla.y += 10;
-            }
+            if (gorilla.y + 10 + gorilla.height <= canvas.height) gorilla.y += 10;
             break;
         case 'a':
-            if (gorilla.x - 10 >= 0) {
-                gorilla.x -= 10;
-            }
+            if (gorilla.x - 10 >= 0) gorilla.x -= 10;
             break;
         case 'd':
-            if (gorilla.x + 10 + gorilla.width <= canvas.width) {
-                gorilla.x += 10;
-            }
+            if (gorilla.x + 10 + gorilla.width <= canvas.width) gorilla.x += 10;
             break;
         case 'q':
             curarGorila();
             break;
     }
     drawScene();
+    atualizarHUD();
 });

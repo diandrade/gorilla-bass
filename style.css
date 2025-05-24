@@ -25,3 +25,29 @@ canvas {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+#hud {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 12px;
+  color: white;
+  font-family: Arial, sans-serif;
+  border-radius: 8px;
+}
+
+#log {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  max-height: 150px;
+  overflow-y: auto;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: limegreen;
+  font-family: monospace;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
