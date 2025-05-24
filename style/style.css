@@ -24,14 +24,19 @@ body {
   width: 100vw;
 }
 
-h1 {
+#start-screen h1 {
   font-size: 4rem;
   font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 4px;
   color: #FFD700;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
-  font-family: 'Impact', 'Arial Black', sans-serif;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+  animation: float 3s ease-in-out infinite;
+}
+
+#start-screen p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #game-container {
