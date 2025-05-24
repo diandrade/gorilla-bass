@@ -20,6 +20,16 @@ body {
   width: 100vw;
 }
 
+h1 {
+  font-size: 4rem;            /* Very big */
+  font-weight: 900;           /* Extra bold */
+  text-transform: uppercase;  /* All caps for impact */
+  letter-spacing: 4px;        /* More spaced out */
+  color: #ff0000;             /* Strong color, e.g., bright red */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Adds a powerful shadow */
+  font-family: 'Impact', 'Arial Black', sans-serif; /* Strong font */
+}
+
 #game-container {
   display: none;
 }
