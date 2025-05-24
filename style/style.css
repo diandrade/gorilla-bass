@@ -30,17 +30,16 @@ body {
   color: #FFD700;
   text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
 }
-
 #start-screen p {
   font-family: 'Press Start 2P', monospace; 
   font-size: 1rem;
   color: #e0e0e0;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
   margin: 0.5rem 0;
-  width: 350px;
-  max-width: 600px;
+  width: 350px;        /* squish content */
+  max-width: 600px;    /* allow some flexibility */
+  text-align: center;  /* center text inside the squished box */
 }
-
 .icon {
   width: 50px;
   display: inline-block;
