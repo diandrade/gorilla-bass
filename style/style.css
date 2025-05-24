@@ -30,21 +30,18 @@ body {
   color: #FFD700;
   text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
 }
+
 #start-screen p {
-  font-family: 'Press Start 2P', monospace; 
+  font-family: 'Press Start 2P', monospace;
   font-size: 1rem;
   color: #e0e0e0;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
   margin: 0.5rem 0;
   width: 350px;
   max-width: 600px;
-  text-align: center; 
+  text-align: center;
 }
-.icon {
-  width: 50px;
-  display: inline-block;
-  vertical-align: middle;
-}
+
 
 .controls {
   background: rgba(0, 0, 0, 0.3);
@@ -59,7 +56,7 @@ body {
 
 .icon {
   width: 50px;
-  
+
 }
 
 .controls {
@@ -77,19 +74,20 @@ body {
   font-family: 'Press Start 2P', monospace;
   font-size: 1rem;
   color: #fff;
-  background: linear-gradient(45deg, #ff8c00, #ffa500); /* orange gradient */
+  background: linear-gradient(45deg, #ff8c00, #ffa500);
+  /* orange gradient */
   border: none;
   padding: 1rem 2rem;
   margin-top: 2rem;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 #start-button:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0,0,0,0.7);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
 }
 
 #game-container {
@@ -131,4 +129,3 @@ canvas {
   padding: 10px;
   box-sizing: border-box;
 }
-
