@@ -51,14 +51,10 @@ function drawScene() {
             ctx.strokeRect(human.x, human.y - 10, barWidth, barHeight);
         }
     });
-    ctx.font = '20px Arial';
-    ctx.fillStyle = 'white';
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 2;
-    const scoreText = `Humans killed: ${killedHumans}`;
-    const textWidth = ctx.measureText(scoreText).width;
-    ctx.strokeText(scoreText, canvas.width - textWidth - 20, 30);
-    ctx.fillText(scoreText, canvas.width - textWidth - 20, 30);
+
+    // Remove humans killed count do canto superior direito
+
+    // (Se quiser adicionar algum texto na tela inicial, faça na tela inicial, não aqui)
 }
 
 function atualizarHUD() {
@@ -130,6 +126,28 @@ function humansAttack() {
     }
 }
 
+// ** Nova função para movimentar humanos em direção ao gorila **
+
+function movimentarHumans() {
+    const speed = 1; // velocidade dos humanos
+
+    humans.forEach(human => {
+        if (!human.alive) return;
+
+        const dx = gorilla.x - human.x;
+        const dy = gorilla.y - human.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance > 1) {
+            human.x += (dx / distance) * speed;
+            human.y += (dy / distance) * speed;
+
+            human.x = Math.min(Math.max(human.x, 0), canvas.width - human.width);
+            human.y = Math.min(Math.max(human.y, 0), canvas.height - human.height);
+        }
+    });
+}
+
 /*-----------------------------------Estado do Jogo (Game State)------------------------------------*/
 
 resizeCanvas();
@@ -182,11 +200,13 @@ startButton.addEventListener('click', () => {
     drawScene();
     atualizarHUD();
 
+    // Loop do jogo rodando a 60 FPS (60 frames por segundo)
     setInterval(() => {
+        movimentarHumans();
         humansAttack();
         drawScene();
         atualizarHUD();
-    }, 1000);
+    }, 1000 / 60);
 });
 
 canvas.addEventListener('mousedown', (event) => {
