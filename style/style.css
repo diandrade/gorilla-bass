@@ -12,6 +12,10 @@ body {
 }
 
 #start-screen {
+  background-image: url('../assets/swamp_home.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,13 +25,13 @@ body {
 }
 
 h1 {
-  font-size: 4rem;            /* Very big */
-  font-weight: 900;           /* Extra bold */
-  text-transform: uppercase;  /* All caps for impact */
-  letter-spacing: 4px;        /* More spaced out */
-  color: #ff0000;             /* Strong color, e.g., bright red */
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Adds a powerful shadow */
-  font-family: 'Impact', 'Arial Black', sans-serif; /* Strong font */
+  font-size: 4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #FFD700;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+  font-family: 'Impact', 'Arial Black', sans-serif;
 }
 
 #game-container {
