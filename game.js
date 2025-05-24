@@ -51,10 +51,6 @@ function drawScene() {
             ctx.strokeRect(human.x, human.y - 10, barWidth, barHeight);
         }
     });
-
-    // Remove humans killed count do canto superior direito
-
-    // (Se quiser adicionar algum texto na tela inicial, faça na tela inicial, não aqui)
 }
 
 function atualizarHUD() {
@@ -96,6 +92,7 @@ function ataqueGorila() {
             }
         }
     });
+    verificarFimDeJogo(); 
 }
 
 function tornarInvulneravel() {
@@ -121,15 +118,11 @@ function humansAttack() {
         }
     });
 
-    if (gorilla.hp <= 0) {
-        alert("Gorila perdeu!");
-    }
+    verificarFimDeJogo();
 }
 
-// ** Nova função para movimentar humanos em direção ao gorila **
-
 function movimentarHumans() {
-    const speed = 1; // velocidade dos humanos
+    const speed = 1;
 
     humans.forEach(human => {
         if (!human.alive) return;
@@ -146,6 +139,20 @@ function movimentarHumans() {
             human.y = Math.min(Math.max(human.y, 0), canvas.height - human.height);
         }
     });
+}
+
+
+function verificarFimDeJogo() {
+    if (gorilla.hp <= 0) {
+        alert("O jogo foi encerrado: o gorila morreu!");
+        clearInterval(gameInterval);
+    }
+
+    const vivos = humans.filter(h => h.alive).length;
+    if (vivos === 0) {
+        alert("O jogo foi encerrado: todos os humanos foram eliminados!");
+        clearInterval(gameInterval);
+    }
 }
 
 /*-----------------------------------Estado do Jogo (Game State)------------------------------------*/
@@ -180,6 +187,8 @@ for (let i = 0; i < 100; i++) {
 
 let killedHumans = Number(localStorage.getItem('killedHumans')) || 0;
 
+let gameInterval;
+
 /*------------------------------Chamada das Funções e Eventos----------------------------------------*/
 
 gorillaImage.onload = function () {
@@ -200,12 +209,12 @@ startButton.addEventListener('click', () => {
     drawScene();
     atualizarHUD();
 
-    // Loop do jogo rodando a 60 FPS (60 frames por segundo)
-    setInterval(() => {
+    gameInterval = setInterval(() => {
         movimentarHumans();
         humansAttack();
         drawScene();
         atualizarHUD();
+        verificarFimDeJogo();
     }, 1000 / 60);
 });
 
