@@ -44,6 +44,15 @@ body {
   max-width: 600px;
 }
 
+.controls {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+
+
 #game-container {
   display: none;
 }
