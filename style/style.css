@@ -1,7 +1,3 @@
-/*
-Com as definições abaixo, o projeto ficará fixado na tela assim que inicializado, previnindo scrooling (por conta do overflow e do block).
-*/
-
 html,
 body {
   margin: 0;
@@ -75,7 +71,6 @@ body {
   font-size: 1rem;
   color: #fff;
   background: linear-gradient(45deg, #ff8c00, #ffa500);
-  /* orange gradient */
   border: none;
   padding: 1rem 2rem;
   margin-top: 2rem;

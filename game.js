@@ -19,8 +19,6 @@ function resizeCanvas() {
 
 function drawScene() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Desenhar gorila com possível deslocamento de ataque
     const gorillaOffsetX = gorilla.isAttacking ? 10 : 0;
     ctx.drawImage(
         gorillaImage,
@@ -89,7 +87,7 @@ function ataqueGorila() {
     gorilla.isAttacking = true;
     setTimeout(() => {
         gorilla.isAttacking = false;
-    }, 150); // Duração da animação
+    }, 150);
 
     humans.forEach(human => {
         const dx = human.x - gorilla.x;
@@ -193,7 +191,7 @@ let gorilla = {
     height: 80,
     radius: 30,
     invulneravel: false,
-    isAttacking: false // NOVO: controle de animação
+    isAttacking: false
 };
 
 let humans = [];
