@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gorilla Bass</title>
+    <script src="/game.js" defer></script>
+    <link rel="stylesheet" href="./style/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gorilla Bass</title>
-  <script src="/game.js" defer></script>
-  <link rel="stylesheet" href="./style/style.css" />
-</head>
-
-<body>
-  <div id="start-screen">
-    <h1>Gorilla Bass</h1>
-    <p>
-      Você é um Gorilla e precisa defender seu pântano de 100 Humanos
-      invasores!
-    </p>
-    <p>Supere eles e proteja seu território!</p>
-    <div class="controls">
+  <div id="end-screen" style="display: none">
+    <h1 id="end-message"></h1>
+    <button id="restart-button">RECOMEÇAR</button>
+  </div>
+  <body>
+    <div id="start-screen">
+      <h1>Gorilla Bass</h1>
       <p>
-        WASD - Mover
+        Você é um Gorilla e precisa defender seu pântano de 100 Humanos
+        invasores!
       </p>
+      <p>Supere eles e proteja seu território!</p>
+      <div class="controls">
+        <p>WASD - Mover</p>
 
-      <p>Botão Esquerdo do Mouse - Atacar</p>
-      <p>Botão Direito do Mouse - Inalvejável Por 2 Segundos</p>
-      <p>Q - Curar 20% da Vida</p>
+        <p>Botão Esquerdo do Mouse - Atacar</p>
+        <p>Botão Direito do Mouse - Inalvejável Por 2 Segundos</p>
+        <p>Q - Curar 20% da Vida</p>
+      </div>
+      <button id="start-button">START GAME</button>
     </div>
-    <button id="start-button">START GAME</button>
-  </div>
-  <div id="game-container">
-    <canvas id="game-canvas"></canvas>
-    <div id="hud">
-      <p>💚 Vida do Gorila: A<span id="vida-gorila">100</span></p>
-      <p>☠️ Humanos mortos: <span id="mortos">0</span></p>
-      <p>🧍‍♂️ Humanos vivos: <span id="vivos">100</span></p>
+    <div id="game-container">
+      <canvas id="game-canvas"></canvas>
+      <div id="hud">
+        <p>💚 Vida do Gorila: A<span id="vida-gorila">100</span></p>
+        <p>☠️ Humanos mortos: <span id="mortos">0</span></p>
+        <p>🧍‍♂️ Humanos vivos: <span id="vivos">100</span></p>
+      </div>
+      <div id="log"></div>
     </div>
-    <div id="log"></div>
-  </div>
-  <!--TODO: Criar a Tela de Finalização do Game (Ex: Os Humanos Venceram!) ou (Ex: O Gorilla Venceu!)-->
-</body>
-
+    <!--TODO: Criar a Tela de Finalização do Game (Ex: Os Humanos Venceram!) ou (Ex: O Gorilla Venceu!)-->
+  </body>
 </html>

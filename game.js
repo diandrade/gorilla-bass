@@ -127,7 +127,7 @@ function humansAttack() {
             const dy = gorilla.y - human.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
 
-            if (distance < 100) {
+            if (distance < 65) {
                 gorilla.hp -= 0.2;
             }
 
@@ -158,15 +158,25 @@ function movimentarHumans() {
 }
 
 function verificarFimDeJogo() {
+    const endScreen = document.getElementById('end-screen');
+    const endMessage = document.getElementById('end-message');
+    const gameContainer = document.getElementById('game-container');
+
     if (gorilla.hp <= 0) {
-        alert("O jogo foi encerrado: o gorila morreu!");
         clearInterval(gameInterval);
+        gameContainer.style.display = 'none';
+        endMessage.textContent = "Os Humanos Venceram!";
+        endScreen.style.display = 'flex';
+        return;
     }
 
     const vivos = humans.filter(h => h.alive).length;
     if (vivos === 0) {
-        alert("O jogo foi encerrado: todos os humanos foram eliminados!");
         clearInterval(gameInterval);
+        gameContainer.style.display = 'none';
+        endMessage.textContent = "O Gorila Venceu!";
+        endScreen.style.display = 'flex';
+        return;
     }
 }
 
@@ -268,3 +278,8 @@ document.addEventListener('keydown', (event) => {
     drawScene();
     atualizarHUD();
 });
+
+document.getElementById('restart-button').addEventListener('click', () => {
+    location.reload();
+});
+
