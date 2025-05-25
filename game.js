@@ -19,7 +19,16 @@ function resizeCanvas() {
 
 function drawScene() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(gorillaImage, gorilla.x, gorilla.y, gorilla.width, gorilla.height);
+
+    // Desenhar gorila com possível deslocamento de ataque
+    const gorillaOffsetX = gorilla.isAttacking ? 10 : 0;
+    ctx.drawImage(
+        gorillaImage,
+        gorilla.x + gorillaOffsetX,
+        gorilla.y,
+        gorilla.width,
+        gorilla.height
+    );
 
     const barWidth = gorilla.width;
     const barHeight = 8;
@@ -54,7 +63,7 @@ function drawScene() {
 }
 
 function atualizarHUD() {
-    document.getElementById('vida-gorila').textContent = gorilla.hp;
+    document.getElementById('vida-gorila').textContent = Math.max(0, Math.round(gorilla.hp));
     document.getElementById('mortos').textContent = killedHumans;
     const vivos = humans.filter(h => h.alive).length;
     document.getElementById('vivos').textContent = vivos;
@@ -77,6 +86,11 @@ function curarGorila() {
 }
 
 function ataqueGorila() {
+    gorilla.isAttacking = true;
+    setTimeout(() => {
+        gorilla.isAttacking = false;
+    }, 150); // Duração da animação
+
     humans.forEach(human => {
         const dx = human.x - gorilla.x;
         const dy = human.y - gorilla.y;
@@ -92,6 +106,7 @@ function ataqueGorila() {
             }
         }
     });
+
     verificarFimDeJogo();
 }
 
@@ -112,9 +127,10 @@ function humansAttack() {
             const dy = gorilla.y - human.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
 
-            if (distance < 100) {
-                gorilla.hp -= 1;
+            if (distance < 65) {
+                gorilla.hp -= 0.2;
             }
+
         }
     });
 
@@ -141,17 +157,26 @@ function movimentarHumans() {
     });
 }
 
-
 function verificarFimDeJogo() {
+    const endScreen = document.getElementById('end-screen');
+    const endMessage = document.getElementById('end-message');
+    const gameContainer = document.getElementById('game-container');
+
     if (gorilla.hp <= 0) {
-        alert("O jogo foi encerrado: o gorila morreu!");
         clearInterval(gameInterval);
+        gameContainer.style.display = 'none';
+        endMessage.textContent = "Os Humanos Venceram!";
+        endScreen.style.display = 'flex';
+        return;
     }
 
     const vivos = humans.filter(h => h.alive).length;
     if (vivos === 0) {
-        alert("O jogo foi encerrado: todos os humanos foram eliminados!");
         clearInterval(gameInterval);
+        gameContainer.style.display = 'none';
+        endMessage.textContent = "O Gorila Venceu!";
+        endScreen.style.display = 'flex';
+        return;
     }
 }
 
@@ -167,7 +192,8 @@ let gorilla = {
     width: 80,
     height: 80,
     radius: 30,
-    invulneravel: false
+    invulneravel: false,
+    isAttacking: false // NOVO: controle de animação
 };
 
 let humans = [];
@@ -220,20 +246,21 @@ startButton.addEventListener('click', () => {
 
 canvas.addEventListener('mousedown', (event) => {
     if (event.button === 0) {
-        tornarInvulneravel();
-    } else if (event.button === 2) {
         ataqueGorila();
+    } else if (event.button === 2) {
+        tornarInvulneravel();
     }
     drawScene();
     atualizarHUD();
 });
+
 
 canvas.addEventListener('contextmenu', (event) => event.preventDefault());
 
 document.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'w':
-            if (gorilla.y - 10 >= 0) gorilla.y -= 10;
+            if (gorilla.y - 10 >= canvas.height * 0.5) gorilla.y -= 10;
             break;
         case 's':
             if (gorilla.y + 10 + gorilla.height <= canvas.height) gorilla.y += 10;
@@ -251,3 +278,8 @@ document.addEventListener('keydown', (event) => {
     drawScene();
     atualizarHUD();
 });
+
+document.getElementById('restart-button').addEventListener('click', () => {
+    location.reload();
+});
+
