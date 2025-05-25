@@ -233,7 +233,7 @@ canvas.addEventListener('contextmenu', (event) => event.preventDefault());
 document.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'w':
-            if (gorilla.y - 10 >= 0) gorilla.y -= 10;
+            if (gorilla.y - 10 >= canvas.height * 0.5) gorilla.y -= 10;
             break;
         case 's':
             if (gorilla.y + 10 + gorilla.height <= canvas.height) gorilla.y += 10;
