@@ -12,7 +12,7 @@ Simulação interativa de uma batalha entre um gorila e 100 humanos invasores ut
 |--------------------|----------|
 | Diego Andrade      | 566385   |
 | Gustavo Crevellari | 561408   |
-| Rafaela            | 561671   |
+| Rafaela Ferreira   | 561671   |
 
 ---
 
